@@ -9,18 +9,46 @@
 
 </head>
     <body>
+
             <div id="lottie-bg"></div>
             <div class="header">
-                <p>Welcome to Sylphora</p>
+                <p id="typing-text"></p>
             </div>
-    <script>
-        lottie.loadAnimation({
-        container: document.getElementById("lottie-bg"),
-        renderer: "svg",
-        loop: true,
-        autoplay: true,
-        path: "assets/LWSBC9Kget.json" 
-         });
+            <script>
+                lottie.loadAnimation({
+                    container: document.getElementById("lottie-bg"),
+                    renderer: "svg",
+                    loop: true,
+                    autoplay: true,
+                    path: "assets/LWSBC9Kget.json" 
+                });
+        
+                // Typing effect for the welcome text
+                const text = "Welcome to Sylphora";
+                const typingElement = document.getElementById("typing-text");
+                let index = 0;
+                
+                function typeWriter() {
+                    if (index < text.length) {
+                        typingElement.innerHTML += text.charAt(index);
+                        index++;
+                        setTimeout(typeWriter, 100); // Adjust timing (in ms) for typing speed
+                    } else {
+                        // Optional: Add cursor blink after typing completes
+                        typingElement.classList.add("typing-complete");
+                        
+                        // Optional: To restart the typing effect after a pause
+                        // setTimeout(() => {
+                        //     typingElement.innerHTML = "";
+                        //     index = 0;
+                        //     typeWriter();
+                        // }, 2000); // Wait 3 seconds before restarting
+                    }
+                }
+                
+                // Start the typing effect when the page loads
+                window.addEventListener("load", typeWriter);
+            </script>
 
     </script>
    
@@ -95,5 +123,6 @@
         </div>
     </div>
 </footer> 
+
 </body>
 </html>
