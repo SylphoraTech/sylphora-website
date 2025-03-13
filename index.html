@@ -5,8 +5,200 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+    <script src="script.js"></script>
     <title>Sylphora</title>    
+    <style>
 
+   .vision-goals {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    margin-top: 700px;
+}
+
+.vision-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.animation-container {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#vision-animation {
+    width: 100%;
+    height: 100%;
+}
+
+.vision-text {
+    flex: 1;
+}
+
+.vision-text h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+.vision-text h3 {
+    font-size: 24px;
+    color: #444;
+    margin-top: 20px;
+}
+
+.vision-text p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+    .vision-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .animation-container {
+        width: 250px;
+        height: 250px;
+    }
+}
+/* -----------------------research development------------------- */
+.services-section {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+    margin-top: 150px;
+    min-height: auto;
+    flex-direction: column;
+    margin-bottom: 0;
+}
+
+.services-section h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    width: 280px;
+    cursor: pointer;
+}
+
+.service-item:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-3px);
+}
+
+.number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 12px;
+}
+
+.tab-content {
+    flex-direction: column;
+    display: none;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: left;
+}
+
+.tab-content h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.tab-content p,
+.tab-content ul {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.tab-content ul {
+    padding-left: 20px;
+}
+
+.tab-content ul li {
+    margin-bottom: 10px;
+}
+
+/* Active Tab */
+.tab-content.active {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .services-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/* ---------------------------------------- */
+.animation-container {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto; /* Centering fix */
+    position: relative; /* Ensure proper alignment */
+}
+
+.research-development-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    text-align: center;
+}
+
+
+    </style>
+   
+    
 </head>
     <body>
 
@@ -14,45 +206,9 @@
             <div class="header">
                 <p id="typing-text"></p>
             </div>
-            <script>
-                lottie.loadAnimation({
-                    container: document.getElementById("lottie-bg"),
-                    renderer: "svg",
-                    loop: true,
-                    autoplay: true,
-                    path: "assets/LWSBC9Kget.json" 
-                });
-        
-                // Typing effect for the welcome text
-                const text = "Welcome to Sylphora";
-                const typingElement = document.getElementById("typing-text");
-                let index = 0;
-                
-                function typeWriter() {
-                    if (index < text.length) {
-                        typingElement.innerHTML += text.charAt(index);
-                        index++;
-                        setTimeout(typeWriter, 100); // Adjust timing (in ms) for typing speed
-                    } else {
-                        // Optional: Add cursor blink after typing completes
-                        typingElement.classList.add("typing-complete");
-                        
-                        // Optional: To restart the typing effect after a pause
-                        // setTimeout(() => {
-                        //     typingElement.innerHTML = "";
-                        //     index = 0;
-                        //     typeWriter();
-                        // }, 2000); // Wait 3 seconds before restarting
-                    }
-                }
-                
-                // Start the typing effect when the page loads
-                window.addEventListener("load", typeWriter);
-            </script>
 
-    </script>
-   
-   <nav class="navbar">
+
+    <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="nav-brand">
                 <img src="assets/logo.jpg" alt="Sylphora Logo" class="logo">Sylphora</a>
@@ -86,7 +242,7 @@
                         <li><a href="TnC.html">Terms and Conditions</a></li>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="#">Cancellation</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
@@ -94,6 +250,122 @@
             </ul>
         </div>
     </nav>
+
+    <section class="vision-goals">
+        <div class="vision-content">
+            <div class="animation-container">
+                <div id="vision-animation"></div>
+            </div>
+            <div class="vision-text">
+                <h2>Our Core Values</h2>
+    
+                <h3>🌟 Innovation & Excellence</h3>
+                <p>We push boundaries with AI-driven automation, blockchain security, and SaaS-based solutions, ensuring businesses stay ahead in the digital era.</p>
+    
+                <h3>🤝 Integrity & Transparency</h3>
+                <p>Ethical and responsible tech development is at our core. We ensure trust, security, and transparency in everything we build—whether it’s a blockchain ledger or a cloud application.</p>
+    
+                <h3>👥 Customer-Centric Approach</h3>
+                <p>Our priority is to understand, adapt, and deliver tailored solutions that maximize efficiency, productivity, and business growth.</p>
+    
+                <h3>🚀 Collaboration & Teamwork</h3>
+                <p>We foster a culture where developers, engineers, and innovators work together to create groundbreaking solutions in AI, SaaS, and blockchain technology.</p>
+    
+                <h3>🌍 Sustainability & Responsibility</h3>
+                <p>We design solutions that are energy-efficient, scalable, and environmentally responsible, ensuring long-term sustainable growth.</p>
+            </div>
+        </div>
+    </section>
+    <div class="animation-container">
+        <div id="research-animation"></div>
+    </div>
+   <!-- --------------------------services and development---------------------->
+
+
+   <section class="services-section">
+    <h2>Academic Research and Product Development </h2>
+    <div class="services-container">
+        <!-- <div class="service-item" onclick="showTab('introduction')">
+            <span class="number">1.</span>
+            <span class="content">Introduction</span>
+        </div> -->
+        <div class="service-item" onclick="showTab('focus-areas')">
+            <span class="number">1.</span>
+            <span class="content">Focus Areas</span>
+        </div>
+        <div class="service-item" onclick="showTab('objective')">
+            <span class="number">2.</span>
+            <span class="content">Objective</span>
+        </div>
+        <div class="service-item" onclick="showTab('benefits')">
+            <span class="number">3.</span>
+            <span class="content">Benefits</span>
+        </div>
+        <div class="service-item" onclick="showTab('partnership')">
+            <span class="number">4.</span>
+            <span class="content">Partnership Opportunities</span>
+        </div>
+    </div>
+
+
+    <div class="tab-content" id="focus-areas">
+        <h3>Focus Areas</h3>
+        <ul>
+            <li>Artificial Intelligence (AI)</li>
+            <li>Data Science</li>
+            <li>Software Development</li>
+            <li>Emerging IT Solutions</li>
+        </ul>
+    </div>
+
+    <div class="tab-content" id="objective">
+        <h3>Objective</h3>
+        <ul>
+            <li>Bridge the gap between academic research and industry applications.</li>
+            <li>Provide technical expertise to support research-driven projects.</li>
+            <li>Facilitate software development aligned with market needs.</li>
+            <li>Deliver valuable market insights to enhance research impact.</li>
+        </ul>
+        </div>
+
+    <div class="tab-content" id="benefits">
+        <h3>Benefits</h3>
+        <ul>
+            <li>Transform research ideas into market-ready products.</li>
+            <li>Enhance commercialization of academic research.</li>
+            <li>Strengthen the university’s role in applied technological advancements.</li>
+        </ul>
+    </div>
+
+    <div class="tab-content" id="partnership">
+        <h3>Partnership Opportunities</h3>
+        <ul>
+            <li>Open to collaboration with academic institutions.</li>
+            <li>Explore joint development opportunities with researchers.</li>
+            <li>Ensure innovation thrives in both academia and industry.</li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+   
+    
+</section>
+
+    
+
+
+
 
 <!-------------------------------------------------footer------------------------------------------------------->
 
@@ -103,13 +375,14 @@
             
             <h3>Quick Links</h3>
             <ul>
+
                 <li><a href="about_us.html">About</a></li>
-                <!-- <li><a href="#">FAQ</a></li> -->
                 <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                <!-- <li><a href="#">Help</a></li> -->
                 <li><a href="TnC.html">Terms and Conditions</a></li>
                 <li><a href="disclaimer.html">Legal Disclaimer</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <!-- <li><a href="contact.html">Contact</a></li> -->
+                <li><a href="GDPR-compliance.html">GDPR-compliance</a></li>
+                <li><a href="DMCA.html">DMCA</a></li>
             </ul>
         </div>
         <div class="footer-section">
