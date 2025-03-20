@@ -68,5 +68,65 @@
     path: 'assets/animation/aXFxzl1Itl.json'
   });
 
+// ------------------------------------------dark mode------------------------------------
+
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    
+    
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    toggleButton.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+    const toggleSwitch = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply theme to all relevant elements
+    function applyTheme(theme) {
+        document.body.className = theme + '-mode';
+        
+        // Apply to all major components with proper classes
+        const elementTypes = [
+            '.navbar', '.nav-brand', '.nav-link', '.dropdown-menu', 
+            '.footer', '.footer-section', '.footer-left', '.footer-center'
+        ];
+        
+        elementTypes.forEach(type => {
+            document.querySelectorAll(type).forEach(element => {
+                // Remove any existing theme classes
+                element.classList.remove('dark-mode', 'light-mode');
+                // Add new theme class
+                element.classList.add(theme + '-mode');
+            });
+        });
+        
+        // Apply to all links inside specific containers
+        document.querySelectorAll('.footer-section ul li a, .dropdown-menu li a').forEach(link => {
+            link.classList.remove('dark-mode', 'light-mode');
+            link.classList.add(theme + '-mode');
+        });
+    }
+    
+    if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+        applyTheme('dark');
+    } else {
+        applyTheme('light');
+    }
+    
+    toggleSwitch.addEventListener('change', function() {
+        if (this.checked) {
+            applyTheme('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            applyTheme('light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
 
 

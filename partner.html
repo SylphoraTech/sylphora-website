@@ -5,10 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Partnerships & Collaboration - Sylphora</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
     <style>
+
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+}
+
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #ffffff;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#dark-mode-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
         .partner-hero {
             height: 60vh;
             background: linear-gradient(135deg, #004e92, #000428);
@@ -56,8 +85,8 @@
         .partner-btn {
             display: inline-block;
             padding: 12px 30px;
-            background-color: #007bff;
-            color: white;
+            background-color: white;
+            color: black;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
@@ -68,7 +97,7 @@
         .partner-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            background-color: #0062cc;
+            background-color: white;
         }
 
         .partner-types-section {
@@ -103,7 +132,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background-color: #007bff;
+            background-color: grey;
         }
 
         .partner-types-container {
@@ -131,7 +160,7 @@
 
         .partner-card-header {
             padding: 20px;
-            background: linear-gradient(to right, #007bff, #0099ff);
+            background: linear-gradient(to right, grey, black);
             color: white;
             text-align: center;
         }
@@ -205,7 +234,7 @@
         .process-step-number {
             width: 60px;
             height: 60px;
-            background-color: #007bff;
+            background-color: grey;
             color: white;
             border-radius: 50%;
             display: flex;
@@ -266,7 +295,7 @@
             justify-content: center;
             align-items: center;
             background-color: rgba(0, 123, 255, 0.1);
-            color: #007bff;
+            color: white;
             border-radius: 50%;
             font-size: 30px;
         }
@@ -333,7 +362,7 @@
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
-            border-color: #007bff;
+            border-color: white;
             outline: none;
             box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
         }
@@ -344,7 +373,7 @@
         }
 
         .submit-btn {
-            background-color: #007bff;
+            background-color: grey;
             color: white;
             border: none;
             padding: 12px 30px;
@@ -356,7 +385,7 @@
         }
 
         .submit-btn:hover {
-            background-color: #0062cc;
+            background-color: black;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -495,17 +524,9 @@
                 <li class="nav-item"><a href="partner.html" class="nav-link">Collaboration</a></li>
                 <li class="nav-item"><a href="about_us.html"class="nav-link">About Us</a></li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Help</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="TnC.html">Terms and Conditions</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="#">Cancellation</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
-                <li class="nav-item"><a href="signup.html" class="nav-link">Signup</a></li>
+                
+                <!-- <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="signup.html" class="nav-link">Signup</a></li> -->
             </ul>
             <div class="theme-switch">
                 <label class="switch">
@@ -515,6 +536,8 @@
             </div>
         </div>
     </nav>
+
+    <button id="dark-mode-toggle">🌙</button>
 
     <!-- Hero Section -->
     <section class="partner-hero">
@@ -526,7 +549,7 @@
         </div>
     </section>
 
-    <!-- Partnership Types Section -->
+    <!-- Partnership Types Section -------------------------------------------------------------------------->
     <section class="partner-types-section">
         <div class="section-heading" data-aos="fade-up">
             <h2>Partnership Opportunities</h2>
@@ -593,7 +616,7 @@
         </div>
     </section>
 
-    <!-- Partnership Process Section -->
+    <!-- Partnership Process Section ----------------------------------------------------------------------->
     <section class="partner-process-section">
         <div class="section-heading" data-aos="fade-up">
             <h2>Partnership Journey</h2>
@@ -627,7 +650,7 @@
         </div>
     </section>
 
-    <!-- Benefits Section -->
+    <!-- Benefits Section --------------------------------------------------------->
     <section class="partner-benefits-section">
         <div class="section-heading" data-aos="fade-up">
             <h2>Partnership Benefits</h2>
@@ -673,8 +696,8 @@
         </div>
     </section>
 
-    <!-- Contact Form Section -->
-    <section id="partner-contact" class="partner-contact-section">
+    <!-- Contact Form Section ----------------------------------------------------------------------------------->
+    <section id="partner-contact" class="partner-contact-section" >
         <div class="section-heading" data-aos="fade-up">
             <h2>Become a Partner</h2>
             <p>Ready to explore partnership opportunities? Fill out the form below and our partnership team will get in touch with you.</p>
@@ -798,40 +821,51 @@
         });
     </script>
 
-    <footer class="footer">
+     <!-- Footer -->
+     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
-                
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="about_us.html">About</a></li>
                     <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     <li><a href="TnC.html">Terms and Conditions</a></li>
                     <li><a href="disclaimer.html">Legal Disclaimer</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="GDPR-compliance.html">GDPR-compliance</a></li>
+                    <li><a href="DMCA.html">DMCA</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <div class="social-icons">
-    
                     <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="assets/twitter.png" alt="Twitter"></a>
-                    <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
-                    <a href="#"><img src="assets/linkedin.png" alt="LinkedIn"></a>
-    
+                    <a href="https://x.com/SylphoraPvt"><img src="assets/twitter.png" alt="Twitter"></a>
+                    <a href="https://www.instagram.com/sylphora_technologies?igsh=MW5rYzFpM2ZqNDBvbA=="><img src="assets/instagram.png" alt="Instagram"></a>
+                    <a href="https://www.linkedin.com/company/sylphora/?viewAsMember=true"><img src="assets/linkedin.png" alt="LinkedIn"></a>
                 </div>
             </div>
         </div>
+         <div class="footer-section help-section">
+            <h3>Help</h3>
+            <ul>
+                <li><a href="TnC.html">Terms and Conditions</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="#">Cancellation</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+        
         <div class="footer-bottom">
             <div class="footer-left">
                 <p>CIN-U70200MH2025PTC441646</p>
             </div>
-
             <div class="footer-centre">
                 <p>&copy; 2025 Sylphora. All Rights Reserved.</p>
             </div>
         </div>
+        
+        
+       
     </footer>
 </body>
 </html>

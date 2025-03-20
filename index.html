@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <script src="script.js" ></script>
     <title>Sylphora</title>    
     <style>
 
@@ -77,130 +80,107 @@
     }
 }
 /* -----------------------research development------------------- */
-.services-section {
+/* Section Styling */
+/* Section Styling */
+.research-development-section {
+    text-align: center;
     padding: 60px 20px;
     background-color: #f9f9f9;
-    text-align: center;
-    margin-top: 150px;
-    min-height: auto;
-    flex-direction: column;
-    margin-bottom: 0;
 }
 
-.services-section h2 {
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #007bff;
-    display: inline-block;
-    padding-bottom: 10px;
-}
-
-.services-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.service-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 20px;
-    border-radius: 8px;
-    background-color: #ffffff;
-    color: #333;
-    font-size: 18px;
-    font-weight: 500;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    width: 280px;
-    cursor: pointer;
-}
-
-.service-item:hover {
-    background-color: #f0f0f0;
-    transform: translateY(-3px);
-}
-
-.number {
-    font-size: 20px;
-    font-weight: bold;
-    color: #007bff;
-    margin-right: 12px;
-}
-
-.tab-content {
-    flex-direction: column;
-    display: none;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #ffffff;
-    margin-top: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: left;
-}
-
-.tab-content h3 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.tab-content p,
-.tab-content ul {
-    font-size: 18px;
-    color: #555;
-    line-height: 1.8;
-}
-
-.tab-content ul {
-    padding-left: 20px;
-}
-
-.tab-content ul li {
+.research-development-section h2 {
+    font-size: 2.5rem;
+    color: #000;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 
-/* Active Tab */
-.tab-content.active {
-    display: block;
+.research-development-section p {
+    font-size: 1.2rem;
+    color: #777;
+    margin-bottom: 40px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .services-container {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-/* ---------------------------------------- */
-.animation-container {
-    width: 400px;
-    height: 400px;
+/* Container for Cards */
+.research-development-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 40px auto; /* Centering fix */
-    position: relative; /* Ensure proper alignment */
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.research-development-section {
+/* Individual Card Styling */
+.research-development-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 320px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.research-development-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Header Styling */
+.research-development-header {
+    background-color: #686f76;
+    color: #ffffff;
+    padding: 15px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* List Styling */
+.research-development-body {
+    padding: 20px 0;
+}
+
+.research-development-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.research-development-body li {
+    font-size: 1rem;
+    color: #555;
+    padding: 8px 0;
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column; 
-    text-align: center;
+}
+
+.research-development-body li::before {
+    content: "✔";
+    color: #007bff;
+    font-weight: bold;
+    margin-right: 8px;
 }
 
 
-    </style>
-   
-    
+.research-development-card .research-development-body {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+
+</style> 
 </head>
     <body>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                    AOS.init({
+                        duration: 800,
+                        easing: 'ease-in-out',
+                        once: true
+                    });
+                });
+        </script>
 
             <div id="lottie-bg"></div>
             <div class="header">
@@ -245,9 +225,10 @@
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
-                <li class="nav-item"><a href="signup.html" class="nav-link">Signup</a></li>
+                <!-- <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li> -->
+                <!-- <li class="nav-item"><a href="signup.html" class="nav-link">Signup</a></li> -->
             </ul>
+            <button id="dark-mode-toggle">🌙</button>
         </div>
     </nav>
 
@@ -276,96 +257,74 @@
             </div>
         </div>
     </section>
-    <div class="animation-container">
-        <div id="research-animation"></div>
-    </div>
-   <!-- --------------------------services and development---------------------->
-
-
-   <section class="services-section">
-    <h2>Academic Research and Product Development </h2>
-    <div class="services-container">
-        <!-- <div class="service-item" onclick="showTab('introduction')">
-            <span class="number">1.</span>
-            <span class="content">Introduction</span>
-        </div> -->
-        <div class="service-item" onclick="showTab('focus-areas')">
-            <span class="number">1.</span>
-            <span class="content">Focus Areas</span>
-        </div>
-        <div class="service-item" onclick="showTab('objective')">
-            <span class="number">2.</span>
-            <span class="content">Objective</span>
-        </div>
-        <div class="service-item" onclick="showTab('benefits')">
-            <span class="number">3.</span>
-            <span class="content">Benefits</span>
-        </div>
-        <div class="service-item" onclick="showTab('partnership')">
-            <span class="number">4.</span>
-            <span class="content">Partnership Opportunities</span>
-        </div>
-    </div>
-
-
-    <div class="tab-content" id="focus-areas">
-        <h3>Focus Areas</h3>
-        <ul>
-            <li>Artificial Intelligence (AI)</li>
-            <li>Data Science</li>
-            <li>Software Development</li>
-            <li>Emerging IT Solutions</li>
-        </ul>
-    </div>
-
-    <div class="tab-content" id="objective">
-        <h3>Objective</h3>
-        <ul>
-            <li>Bridge the gap between academic research and industry applications.</li>
-            <li>Provide technical expertise to support research-driven projects.</li>
-            <li>Facilitate software development aligned with market needs.</li>
-            <li>Deliver valuable market insights to enhance research impact.</li>
-        </ul>
-        </div>
-
-    <div class="tab-content" id="benefits">
-        <h3>Benefits</h3>
-        <ul>
-            <li>Transform research ideas into market-ready products.</li>
-            <li>Enhance commercialization of academic research.</li>
-            <li>Strengthen the university’s role in applied technological advancements.</li>
-        </ul>
-    </div>
-
-    <div class="tab-content" id="partnership">
-        <h3>Partnership Opportunities</h3>
-        <ul>
-            <li>Open to collaboration with academic institutions.</li>
-            <li>Explore joint development opportunities with researchers.</li>
-            <li>Ensure innovation thrives in both academia and industry.</li>
-        </ul>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
    
-    
+   <!-- --------------------------research and development---------------------->
+<section class="research-development-section">
+    <div class="section-heading" data-aos="fade-up">
+        <h2>Academic Research and Product Development</h2>
+        <p>Bridging Innovation and Impact Through Research-Driven Solutions.</p>
+    </div>
+
+    <div class="research-development-container">
+        <!-- Focus Areas -->
+        <div class="research-development-card" data-aos="fade-up">
+            <div class="research-development-header">
+                <h3>Focus Areas</h3>
+            </div>
+            <div class="research-development-body">
+                <ul>
+                    <li>Artificial Intelligence (AI)</li>
+                    <li>Data Science</li>
+                    <li>Software Development</li>
+                    <li>Emerging IT Solutions</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Objective -->
+        <div class="research-development-card" data-aos="fade-up">
+            <div class="research-development-header">
+                <h3>Objective</h3>
+            </div>
+            <div class="research-development-body">
+                <ul>
+                    <li>Bridge the gap between academic research and industry applications.</li>
+                    <li>Provide technical expertise to support research-driven projects.</li>
+                    <li>Facilitate software development aligned with market needs.</li>
+                    <li>Deliver valuable market insights to enhance research impact.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Benefits -->
+        <div class="research-development-card" data-aos="fade-up">
+            <div class="research-development-header">
+                <h3>Benefits</h3>
+            </div>
+            <div class="research-development-body">
+                <ul>
+                    <li>Transform research ideas into market-ready products.</li>
+                    <li>Enhance commercialization of academic research.</li>
+                    <li>Strengthen the university’s role in applied technological advancements.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Partnership Opportunities -->
+        <div class="research-development-card" data-aos="fade-up">
+            <div class="research-development-header">
+                <h3>Partnership Opportunities</h3>
+            </div>
+            <div class="research-development-body">
+                <ul>
+                    <li>Open to collaboration with academic institutions.</li>
+                    <li>Explore joint development opportunities with researchers.</li>
+                    <li>Ensure innovation thrives in both academia and industry.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </section>
-
-    
-
-
-
 
 <!-------------------------------------------------footer------------------------------------------------------->
 
