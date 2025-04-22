@@ -1,10 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Navbar } from "@/components/navigation";
-import { Footer } from "./components/Footer";
+import { Footer } from "@/components/Footer";
 import Home from "./pages/home";
 import Help from "./pages/Help";
-
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
           <Route path="/help" element={<Help />} />
         </Routes>
         <Footer />
-        
       </Router>
     </div>
   );

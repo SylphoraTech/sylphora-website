@@ -1,8 +1,17 @@
+// tailwind.config.js
+
 module.exports = {
-  darkMode: "class", // ✅ Enables dark mode via a class
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./src/**/*.{html,js,jsx,ts,tsx}",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        lampStart: "#D1D5DB",  // Lighter shade
+        lampEnd: "#6B7280",    // Darker shade
+      },
+    },
   },
+  darkMode: 'class', // Enable dark mode via class toggle
   plugins: [],
 };

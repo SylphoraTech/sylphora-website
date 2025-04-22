@@ -1,10 +1,12 @@
 import React from "react";
-import { SparklesPreview } from "../components/sparkles";
+import CardList from "@/components/cards/CardList";
+import { LampDemo } from "@/components/ui/lampe/LampDemo";
 
 const Home: React.FC = () => {
   return (
-    <div className="Home">
-      <SparklesPreview />
+    <div className="p-8">
+      <LampDemo />
+      <CardList />
     </div>
   );
 };
