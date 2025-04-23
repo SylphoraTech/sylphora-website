@@ -1,22 +1,16 @@
-// src/components/ui/lamp/LampContainer.tsx
-import React, { ReactNode } from "react";
-import { cn } from "@/utils/cn";
+"use client";
+import React from "react";
 
-type LampContainerProps = {
-  children: ReactNode;
-};
-
-export function LampContainer({ children }: LampContainerProps) {
+const LampContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div
-      className={cn(
-        "relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-white dark:bg-black"
-      )}
-    >
-      <div className="relative z-10 w-full max-w-7xl px-5">{children}</div>
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 transform rounded-full bg-sky-500/10 blur-[120px] w-[500px] h-[500px]" />
-      </div>
+    <div className="relative w-full overflow-hidden bg-black text-white py-20">
+      {/* Lamp Effect Background */}
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-radial from-lampStart to-transparent rounded-full blur-3xl opacity-30 pointer-events-none" />
+      
+      {/* Content */}
+      <div className="relative z-10">{children}</div>
     </div>
   );
-}
+};
+
+export default LampContainer;

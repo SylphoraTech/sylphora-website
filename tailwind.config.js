@@ -1,17 +1,19 @@
 // tailwind.config.js
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
+  darkMode: "class", // Still needed to use `dark:` utilities
   theme: {
     extend: {
       colors: {
-        lampStart: "#D1D5DB",  // Lighter shade
-        lampEnd: "#6B7280",    // Darker shade
+        lampStart: "#D1D5DB",
+        lampEnd: "#6B7280",
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
     },
   },
-  darkMode: 'class', // Enable dark mode via class toggle
   plugins: [],
 };

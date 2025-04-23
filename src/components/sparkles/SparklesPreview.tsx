@@ -1,34 +1,29 @@
 "use client";
-
 import React from "react";
-import { SparklesCore } from "./SparklesCore";
+import { SparklesCore } from "@/components/sparkles";
 
 export function SparklesPreview() {
   return (
-    <div className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
-      <h1 className="md:text-5xl text-2xl lg:text-7xl font-bold text-center text-white relative z-20">
-        Welcome To Sylphora
-        </h1>
-      <div className="w-[40rem] h-40 relative">
-        {/* Gradients */}
-        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
-        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
-        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
-        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
+    <div className="w-full max-w-7xl h-40 relative mt-4">
+      {/* Wide Indigo Line */}
+      <div className="absolute inset-x-0 top-0 mx-auto w-full max-w-5xl h-[2px] bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm" />
+      <div className="absolute inset-x-0 top-0 mx-auto w-full max-w-5xl h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
 
-        {/* Core sparkles */}
-        <SparklesCore
-          background="transparent"
-          minSize={0.4}
-          maxSize={1}
-          particleDensity={1200}
-          className="w-full h-full"
-          particleColor="#FFFFFF"
-        />
+      {/* Wide Sky Line */}
+      <div className="absolute inset-x-0 top-0 mx-auto w-full max-w-2xl h-[5px] bg-gradient-to-r from-transparent via-sky-500 to-transparent blur-sm" />
+      <div className="absolute inset-x-0 top-0 mx-auto w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-sky-500 to-transparent" />
 
-        {/* Radial gradient */}
-        <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]" />
-      </div>
+      <SparklesCore
+        background="transparent"
+        minSize={0.8}
+        maxSize={1}
+        particleDensity={2200}
+        className="w-full h-full"
+        particleColor="#FFFFFF"
+      />
+
+      {/* Mask overlay */}
+      <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
     </div>
   );
 }
