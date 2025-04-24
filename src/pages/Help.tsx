@@ -2,12 +2,12 @@ import React from "react";
 
 const Help = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-8">
-      <header className="w-full bg-blue-600 text-white p-4 text-center text-2xl font-bold">
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col items-center p-8 transition-colors duration-300">
+      <header className="w-full bg-blue-600 dark:bg-blue-800 text-white p-4 text-center text-2xl font-bold">
         Help Section
       </header>
-      
-      <div className="max-w-4xl w-full mt-8 bg-white p-6 rounded-lg shadow-lg">
+
+      <div className="max-w-4xl w-full mt-8 bg-gray-100 dark:bg-gray-900 p-6 rounded-lg shadow-lg">
         <h2 className="text-xl font-semibold">How Can We Assist You?</h2>
         <p className="mt-4 text-lg">Here are some common questions and answers:</p>
 
@@ -26,7 +26,7 @@ const Help = () => {
           </div>
         </div>
 
-        <button className="mt-8 bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition-colors">
+        <button className="mt-8 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white py-2 px-6 rounded-full transition-colors">
           Contact Support
         </button>
       </div>
