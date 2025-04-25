@@ -1,35 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SparklesPreview } from "@/components/sparkles/SparklesPreview";
 import CardList from "@/components/cards/CardList";
 import { motion } from "framer-motion";
 import LampContainer from "@/components/ui/lamp/LampContainer";
 import { StickyScrollRevealDemo } from "@/components/core/StickyScrollRevealDemo";
-import { MapPinIcon } from '@heroicons/react/20/solid'; // Location Pin Icon
+import { MapPinIcon } from '@heroicons/react/20/solid'; // Import MapPinIcon
 
 const Home: React.FC = () => {
-  const [companyAddress, setCompanyAddress] = useState<string>("");
-
-  useEffect(() => {
-    const fetchCompanyAddress = async () => {
-      try {
-        // Fetching company address from the public folder
-        const response = await fetch("/companyAddress.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch company address");
-        }
-
-        const data = await response.json();
-        setCompanyAddress(data.address);
-      } catch (error) {
-        console.error("Error fetching company address:", error);
-        setCompanyAddress("Failed to load company address.");
-      }
-    };
-
-    fetchCompanyAddress();
-  }, []);
-
   return (
     <div className="flex flex-col items-center w-full bg-black text-white">
       {/* Header Section */}
@@ -75,24 +53,32 @@ const Home: React.FC = () => {
       {/* Quick Links and Company Address */}
       <div className="w-full max-w-7xl px-4 pt-10 pb-4 text-sm text-gray-300">
         <div className="flex flex-col md:flex-row justify-between items-start w-full gap-12">
-          {/* Quick Links */}
-          <div className="flex flex-col space-y-2">
-            <h3 className="text-lg font-semibold text-white mb-2">Quick Links</h3>
-            <a href="/about-us" className="hover:underline">About</a>
-            <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
-            <a href="/terms" className="hover:underline">Terms and Conditions</a>
-            <a href="/disclaimer" className="hover:underline">Legal Disclaimer</a>
-            <a href="/gdpr" className="hover:underline">GDPR-compliance</a>
-            <a href="/dmca" className="hover:underline">DMCA</a>
-          </div>
+
+         {/* Quick Links */}
+<div className="flex flex-col space-y-2">
+  <h3 className="text-lg font-semibold text-white mb-2">Quick Links</h3>
+  <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-4">
+    <a href="/about-us" className="hover:underline">About</a>
+    <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
+    <a href="/terms" className="hover:underline">Terms and Conditions</a>
+    <a href="/disclaimer" className="hover:underline">Legal Disclaimer</a>
+    <a href="/gdpr" className="hover:underline">GDPR-compliance</a>
+    <a href="/dmca" className="hover:underline">DMCA</a>
+  </div>
+</div>
+
 
           {/* Company Address with Location Icon */}
           <div className="flex flex-col items-start">
-            <h3 className="text-lg font-semibold text-white mb-2">Company</h3>
+            <h2 className="text-lg font-semibold text-white mb-2">Company</h2>
             <div className="flex items-center space-x-2">
-              {/* MapPinIcon as Location Icon */}
-              <MapPinIcon className="h-5 w-5 text-white" />
-              <p>{companyAddress || "Loading company address..."}</p>
+             
+              <p>
+                #204 Sapphire Chambers,<br />
+                First Floor, Desk #167,<br />
+                Baner Road, Baner,<br />
+                Pune 411045
+              </p>
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+// src/App.tsx
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Navbar } from "@/components/navigation";
@@ -12,24 +13,26 @@ import Terms from "./pages/companypages/Terms";
 import PrivacyPolicy from "./pages/companypages/PrivacyPolicy";
 import Disclaimer from "./pages/companypages/disclaimer";
 
+// App.tsx
 function App() {
   return (
-    <div className="bg-white text-black dark:bg-black dark:text-white min-h-screen transition-colors duration-300">
+    <div className="flex flex-col min-h-screen bg-white text-black dark:bg-black dark:text-white">
       <Router>
         <Navbar />
 
-        {/* Routes for the application */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/help" element={<Help />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/dmca" element={<DMCA />} />
-          <Route path="/gdpr" element={<GDPR />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/disclaimer" element={<Disclaimer />} />
-        </Routes>
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/dmca" element={<DMCA />} />
+            <Route path="/gdpr" element={<GDPR />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
+          </Routes>
+        </main>
 
         <Footer />
       </Router>
