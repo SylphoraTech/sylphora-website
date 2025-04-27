@@ -18,7 +18,10 @@ const Help = () => {
           </div>
           <div>
             <h3 className="font-semibold">How do I reset my password?</h3>
-            <p>You can reset your password by clicking on the "Forgot Password" link on the login page.</p>
+            <p>
+              You can reset your password by clicking on the "Forgot Password" link on the login
+              page.
+            </p>
           </div>
           <div>
             <h3 className="font-semibold">Where can I find tutorials?</h3>

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const coreValues = [
   {
@@ -28,24 +30,22 @@ const coreValues = [
   },
 ];
 
-const CoreValues: React.FC = () => {
+export function CoreValuesDemo() {
   return (
-    <div className="flex flex-col gap-8 max-w-4xl mx-auto text-left">
+    <div className="w-full max-w-6xl px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {coreValues.map((value, index) => (
-        <div
+        <motion.div
           key={index}
-          className={`p-6 rounded-lg bg-gray-800 shadow-lg ${
-            index === coreValues.length - 1 ? "mb-20" : ""
-          }`}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: index * 0.3 }}
+          viewport={{ once: true }}
+          className="bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col justify-center items-center text-center w-full aspect-square"
         >
-          <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
-            {value.title}
-          </h3>
-          <p className="text-gray-300">{value.description}</p>
-        </div>
+          <h3 className="text-lg md:text-xl font-semibold text-white mb-3">{value.title}</h3>
+          <p className="text-sm md:text-base text-gray-300">{value.description}</p>
+        </motion.div>
       ))}
     </div>
   );
-};
-
-export default CoreValues;
+}

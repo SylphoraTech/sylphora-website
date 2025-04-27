@@ -23,12 +23,7 @@ const Contact = () => {
             />
           </div>
           <div className="form-group">
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone #"
-              aria-label="Phone number"
-            />
+            <input type="tel" name="phone" placeholder="Phone #" aria-label="Phone number" />
             <input
               type="text"
               name="company"
@@ -56,10 +51,7 @@ const Contact = () => {
         <p>📍 39/1B Pune, 411038</p>
         <p>📞 +91 1234567890</p>
         <p>
-          📧{" "}
-          <a href="mailto:Sylphora.pvt@gmail.com">
-            Sylphora.pvt@gmail.com
-          </a>
+          📧 <a href="mailto:Sylphora.pvt@gmail.com">Sylphora.pvt@gmail.com</a>
         </p>
       </div>
     </div>
