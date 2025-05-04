@@ -6,11 +6,11 @@ interface NavButtonsProps {
 }
 
 export function NavButtons({ isMobile = false }: NavButtonsProps) {
-  const navItems = [
+  const mainNavItems = [
     { name: "Home", path: "/" },
-    { name: "Solutions", path: "/solutions" },
-    { name: "Collaboration", path: "/collaboration" },
     { name: "About Us", path: "/about-us" },
+    { name: "Collaboration", path: "/collaboration" },
+    { name: "Contact", path: "/contact" },
   ];
 
   const baseStyles = isMobile
@@ -19,7 +19,7 @@ export function NavButtons({ isMobile = false }: NavButtonsProps) {
 
   return (
     <nav className={`${isMobile ? 'flex flex-col space-y-1' : 'flex items-center space-x-4'}`}>
-      {navItems.map((item) => (
+      {mainNavItems.map((item) => (
         <Link
           key={item.name}
           to={item.path}

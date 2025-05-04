@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import { SparklesPreview } from "@/components/sparkles/SparklesPreview";
@@ -35,16 +34,18 @@ const Home: React.FC = () => {
 
       {/* Cards Section with Lamp Effect */}
       <LampContainer>
-        <section className="min-h-screen w-full max-w-7xl px-4 z-50 relative flex flex-col justify-center items-center text-center space-y-8">
-          <div>
+        <section className="min-h-screen w-full max-w-7xl mx-auto px-4 z-50 flex flex-col justify-center items-center text-center">
+          <div className="max-w-3xl mx-auto mb-8">
             <h2 className="text-3xl md:text-4xl font-bold">
               Academic Research and Product Development
             </h2>
-            <p className="mt-2 text-lg text-gray-300 max-w-3xl">
+            <p className="mt-2 text-lg text-gray-300">
               Bridging Innovation and Impact Through Research-Driven Solutions.
             </p>
           </div>
-          <CardList />
+          <div className="w-full">
+            <CardList />
+          </div>
         </section>
       </LampContainer>
     </div>
