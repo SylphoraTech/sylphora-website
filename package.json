@@ -25,6 +25,7 @@
     "@types/react-dom": "^19.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "core-js": "^3.30.0",
     "framer-motion": "^12.9.2",
     "lucide-react": "^0.488.0",
     "motion": "^12.9.2",
@@ -35,6 +36,7 @@
     "react-router-dom": "^7.5.1",
     "react-scripts": "^5.0.1",
     "react-tsparticles": "^2.12.2",
+    "regenerator-runtime": "^0.14.0",
     "tailwind-merge": "^3.2.0",
     "tsparticles": "^3.8.1",
     "tsparticles-engine": "^2.12.0",
@@ -48,6 +50,7 @@
     "cross-env": "^7.0.3",
     "customize-cra": "^1.0.0",
     "postcss": "^8.5.3",
+    "postcss-preset-env": "^9.0.0",
     "prettier": "^3.5.3",
     "react-app-rewired": "^2.2.1",
     "tailwindcss": "^3.4.17",
@@ -57,12 +60,16 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie 11",
+      "Firefox ESR"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "last 1 edge version",
+      "ie 11"
     ]
   }
 }

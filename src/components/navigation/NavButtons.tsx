@@ -1,20 +1,33 @@
-import { Button } from "@/components/ui/button"; // Assuming Button is already set up
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
-export function NavButtons() {
+interface NavButtonsProps {
+  isMobile?: boolean;
+}
+
+export function NavButtons({ isMobile = false }: NavButtonsProps) {
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Solutions", path: "/solutions" },
+    { name: "Collaboration", path: "/collaboration" },
+    { name: "About Us", path: "/about-us" },
+  ];
+
+  const baseStyles = isMobile
+    ? "block w-full px-3 py-2 text-base font-medium rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+    : "px-3 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors";
+
   return (
-    <div className="flex gap-4">
-      <Button variant="ghost" size="sm">
-        Home
-      </Button>
-      <Button variant="ghost" size="sm">
-        Solutions
-      </Button>
-      <Button variant="ghost" size="sm">
-        Collaboration
-      </Button>
-      <Button variant="ghost" size="sm">
-        About Us
-      </Button>
-    </div>
+    <nav className={`${isMobile ? 'flex flex-col space-y-1' : 'flex items-center space-x-4'}`}>
+      {navItems.map((item) => (
+        <Link
+          key={item.name}
+          to={item.path}
+          className={`${baseStyles} hover:scale-105 transform transition-all duration-200`}
+        >
+          {item.name}
+        </Link>
+      ))}
+    </nav>
   );
 }

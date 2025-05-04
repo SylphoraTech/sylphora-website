@@ -1,5 +1,6 @@
 import React from "react";
 import CardItem from "./CardItem";
+import { motion } from "framer-motion";
 
 const CardList: React.FC = () => {
   const cards = [
@@ -26,7 +27,7 @@ const CardList: React.FC = () => {
       description: [
         "Transform research ideas into market-ready products.",
         "Enhance commercialization of academic research.",
-        "Strengthen the university’s role in applied technological advancements.",
+        "Strengthen the university's role in applied technological advancements.",
       ],
     },
     {
@@ -40,13 +41,22 @@ const CardList: React.FC = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {cards.map((card, index) => (
-        <CardItem
-          key={index}
-          title={card.title}
-          description={card.description}
-        />
+        <motion.div
+          key={card.title}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: index * 0.1,
+            ease: "easeOut",
+          }}
+          viewport={{ once: true }}
+          className="h-full"
+        >
+          <CardItem title={card.title} description={card.description} />
+        </motion.div>
       ))}
     </div>
   );

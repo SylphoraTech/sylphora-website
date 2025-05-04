@@ -1,3 +1,72 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Import browser compatibility fixes */
+@import './styles/browser-fixes.css';
+
+/* Browser-specific fixes */
+.browser-safari {
+  /* Safari-specific fixes */
+  --webkit-backdrop-filter: blur(10px);
+  --webkit-font-smoothing: antialiased;
+}
+
+.browser-firefox {
+  /* Firefox-specific fixes */
+  scrollbar-width: none;
+}
+
+/* Firefox-specific styling via attributes */
+[data-firefox-blur="true"] {
+  filter: blur(40px);
+  -moz-filter: blur(40px);
+}
+
+.browser-ie, .browser-edge {
+  /* IE/Edge fixes */
+  -ms-overflow-style: none;
+}
+
+/* Fix for Safari flexbox issues */
+.safari-flex-fix .flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* Fix for Firefox animation performance */
+.firefox-animation-fix {
+  will-change: transform;
+}
+
+/* Cross-browser gradient compatibility */
+.cross-browser-gradient {
+  background: linear-gradient(to right, #D1D5DB, transparent);
+  background: -webkit-linear-gradient(left, #D1D5DB, transparent);
+  background: -moz-linear-gradient(left, #D1D5DB, transparent);
+  background: -o-linear-gradient(left, #D1D5DB, transparent);
+}
+
+/* Improved fallbacks for advanced CSS features */
+@supports not (backdrop-filter: blur(10px)) {
+  .backdrop-blur {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+  }
+}
+
+@supports not (display: grid) {
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/* Fallback classes for JavaScript style application */
+.firefox-scrollbar-none {
+  scrollbar-width: none;
+}
+
+.safari-overflow-touch {
+  -webkit-overflow-scrolling: touch;
+}

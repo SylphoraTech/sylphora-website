@@ -1,9 +1,10 @@
+
 "use client";
 import React from "react";
 import { SparklesPreview } from "@/components/sparkles/SparklesPreview";
 import CardList from "@/components/cards/CardList";
 import { motion } from "framer-motion";
-import LampContainer from "@/components/ui/lamp/LampContainer";
+import LampContainer from "@/components/ui/Lamp/LampContainer";
 import { MapPinIcon } from "@heroicons/react/20/solid";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { CoreValuesDemo } from "@/components/cards/CoreValuesDemo";
@@ -46,40 +47,6 @@ const Home: React.FC = () => {
           <CardList />
         </section>
       </LampContainer>
-
-      {/* Footer Section */}
-      <div className="w-full max-w-7xl px-4 pt-20 pb-4 text-sm text-gray-300">
-        <div className="flex flex-col md:flex-row justify-between items-start w-full gap-12">
-          {/* Quick Links */}
-          <div className="flex flex-col md:flex-row w-full gap-12">
-            <div className="flex flex-col space-y-2 w-full md:w-1/3">
-              <h3 className="text-lg font-semibold text-white mb-2">Quick Links</h3>
-              <a href="/about-us" className="hover:underline">About</a>
-              <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
-              <a href="/terms" className="hover:underline">Terms and Conditions</a>
-            </div>
-            <div className="flex flex-col space-y-2 w-full md:w-1/3">
-              <a href="/disclaimer" className="hover:underline">Legal Disclaimer</a>
-              <a href="/gdpr" className="hover:underline">GDPR-compliance</a>
-              <a href="/dmca" className="hover:underline">DMCA</a>
-            </div>
-          </div>
-
-          {/* Address */}
-          <div className="flex flex-col items-start w-full md:w-1/4 py-6 px-4 bg-gray-800 rounded-lg shadow-lg">
-            <h2 className="text-lg font-semibold text-white mb-4">Company</h2>
-            <div className="flex items-start space-x-4">
-              <MapPinIcon className="h-8 w-6 text-white" />
-              <p className="text-sm text-gray-300 leading-relaxed">
-                #204 Sapphire Chambers,<br />
-                First Floor, Desk #167,<br />
-                Baner Road, Baner,<br />
-                Pune 411045
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
