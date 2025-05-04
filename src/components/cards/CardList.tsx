@@ -41,23 +41,25 @@ const CardList: React.FC = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {cards.map((card, index) => (
-        <motion.div
-          key={card.title}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.5,
-            delay: index * 0.1,
-            ease: "easeOut",
-          }}
-          viewport={{ once: true }}
-          className="h-full"
-        >
-          <CardItem title={card.title} description={card.description} />
-        </motion.div>
-      ))}
+    <div className="flex justify-center items-center w-full py-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-5xl mx-auto px-4">
+        {cards.map((card, index) => (
+          <motion.div
+            key={card.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: index * 0.1,
+              ease: "easeOut",
+            }}
+            viewport={{ once: true }}
+            className="h-full"
+          >
+            <CardItem title={card.title} description={card.description} />
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };
