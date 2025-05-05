@@ -5,7 +5,7 @@ const GDPR = () => {
   return (
     <PageTransition>
       <div className="container mx-auto p-6 max-w-4xl">
-        <header className="text-center mb-12">
+      <header className="text-center mt-12 mb-12">
           <h1 className="text-4xl font-bold mb-4">GDPR Compliance</h1>
           <p className="text-gray-600 dark:text-gray-400">
             <strong>Last Updated:</strong> March 10, 2025

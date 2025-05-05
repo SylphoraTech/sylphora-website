@@ -15,14 +15,15 @@ const Home: React.FC = () => {
     <div className="flex flex-col items-center w-full bg-black text-white">
       {/* Header Section */}
       <div className="min-h-screen flex flex-col justify-center items-center text-center px-4">
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
-          className="text-4xl md:text-5xl lg:text-7xl font-semibold z-20"
-        >
-          Welcome To Sylphora
-        </motion.h1>
+      <motion.h1
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+  className="text-4xl md:text-5xl lg:text-7xl font-jakarta font-semibold z-20"
+>
+  Welcome To Sylphora
+</motion.h1>
+
         <SparklesPreview />
       </div>
 

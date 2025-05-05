@@ -4,12 +4,12 @@ import PageTransition from "@/components/ui/PageTransition";
 const AboutUs = () => {
   return (
     <PageTransition>
-      <div className="container mx-auto p-6">
+      <div className="w-[800px] mx-auto p-6">
         <h1 className="text-3xl font-bold mb-4">About Us</h1>
         <div className="space-y-6">
           <p className="text-lg">
             We aim to establish a company offering{" "}
-            <strong>innovative tech solutions </strong>and consultancy services to
+            <strong>innovative tech solutions</strong> and consultancy services to
             businesses, helping them optimize operations and achieve digital
             transformation. Our goal is to build a strong market presence through
             tailored solutions for clients across various industries.
