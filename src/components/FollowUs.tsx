@@ -33,14 +33,14 @@ const socialLinks: Array<{
   {
     name: "Instagram",
     icon: FaInstagram,
-    url: "https://www.instagram.com/sylphora_technologies",
+    url: "https://www.instagram.com/sylphora.official?igsh=ZzNkMGNrMjdha25o",
     color: "hover:bg-pink-600",
     ariaLabel: "Follow us on Instagram",
   },
   {
     name: "LinkedIn",
     icon: FaLinkedinIn,
-    url: "https://www.linkedin.com/company/sylphora",
+    url: "https://www.linkedin.com/company/105755694",
     color: "hover:bg-blue-700",
     ariaLabel: "Follow us on LinkedIn",
   },

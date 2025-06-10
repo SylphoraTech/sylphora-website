@@ -2,8 +2,8 @@ import React from "react";
 
 const Help = () => {
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col items-center p-8 transition-colors duration-300">
-      <header className="w-full bg-blue-600 dark:bg-blue-800 text-white p-4 text-center text-2xl font-bold">
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col items-center p-12 transition-colors duration-100">
+      <header className="w-full bg-blue-600 dark:bg-blue-800 text-white p-4 text-center text-4xl font-bold">
         Help Section
       </header>
 

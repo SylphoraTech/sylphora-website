@@ -46,11 +46,11 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo and Title */}
           <Link to="/" className="flex items-center space-x-4">
-            <img 
-              src="/assets/logo.jpg" 
-              alt="Sylphora Logo" 
-              className="h-8 w-auto rounded transform transition hover:scale-105"
-            />
+          <img 
+          src="/assets/logo.jpg" 
+          alt="Sylphora Logo" 
+          className="h-16 w-auto rounded transform transition hover:scale-105"
+          />
             <span className="text-xl font-bold text-black dark:text-white">
               Sylphora
             </span>

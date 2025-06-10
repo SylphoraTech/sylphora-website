@@ -1,9 +1,24 @@
-// src/components/Footer.tsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FollowUs from "./FollowUs";
 
 export function Footer() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [showCompany, setShowCompany] = useState(false);
+  const [showNavigation, setShowNavigation] = useState(false);
+  const [showLegal, setShowLegal] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const handleLinkClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer className="relative w-full bg-gradient-to-b from-black to-gray-900">
       {/* Decorative top border */}
@@ -11,115 +26,81 @@ export function Footer() {
 
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Company</h3>
-            <div className="flex items-start space-x-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-400 mt-1 flex-shrink-0"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <address className="text-gray-400 not-italic text-sm leading-relaxed">
-                #204 Sapphire Chambers,
-                <br />
-                First Floor, Desk #167,
-                <br />
-                Baner Road, Baner,
-                <br />
-                Pune 411045
-              </address>
-            </div>
-            <div className="text-sm text-gray-400">
-              <p>CIN-U70200MH2025PTC441646</p>
-            </div>
+          {/* Company */}
+          <div className="space-y-2">
+            <button
+              onClick={() => setShowCompany(!showCompany)}
+              className="text-lg font-semibold text-white w-full text-left flex justify-between items-center md:block"
+            >
+              Company
+              {isMobile && <span>{showCompany ? "−" : "+"}</span>}
+            </button>
+            {(showCompany || !isMobile) && (
+              <div className="space-y-2 text-sm text-gray-400 transition-all duration-300 ease-in-out">
+                <div className="flex items-start space-x-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 text-gray-400 mt-1 flex-shrink-0"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <address className="not-italic">
+                    #204 Sapphire Chambers,<br />
+                    First Floor, Desk #167,<br />
+                    Baner Road, Baner,<br />
+                    Pune 411045
+                  </address>
+                </div>
+                <p>CIN-U70200MH2025PTC441646</p>
+              </div>
+            )}
           </div>
 
-          {/* Navigation Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Navigation</h3>
-            <nav className="flex flex-col space-y-2">
-              <Link
-                to="/"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about-us"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                About Us
-              </Link>
-              <Link
-                to="/collaboration"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Collaboration
-              </Link>
-              <Link
-                to="/contact"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Contact
-              </Link>
-              <Link
-                to="/help"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Help Center
-              </Link>
-            </nav>
+          {/* Navigation */}
+          <div className="space-y-2">
+            <button
+              onClick={() => setShowNavigation(!showNavigation)}
+              className="text-lg font-semibold text-white w-full text-left flex justify-between items-center md:block"
+            >
+              Navigation
+              {isMobile && <span>{showNavigation ? "−" : "+"}</span>}
+            </button>
+            {(showNavigation || !isMobile) && (
+              <nav className="flex flex-col space-y-2 text-sm text-gray-400 transition-all duration-300 ease-in-out">
+                <Link to="/" onClick={handleLinkClick} className="hover:text-white">Home</Link>
+                <Link to="/about-us" onClick={handleLinkClick} className="hover:text-white">About Us</Link>
+                <Link to="/collaboration" onClick={handleLinkClick} className="hover:text-white">Collaboration</Link>
+                <Link to="/contact" onClick={handleLinkClick} className="hover:text-white">Contact</Link>
+                <Link to="/help" onClick={handleLinkClick} className="hover:text-white">Help Center</Link>
+              </nav>
+            )}
           </div>
 
-          {/* Legal Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Legal</h3>
-            <nav className="flex flex-col space-y-2">
-              <Link
-                to="/privacy-policy"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                to="/terms"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Terms & Conditions
-              </Link>
-              <Link
-                to="/cookies"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Cookies Policy
-              </Link>
-              <Link
-                to="/disclaimer"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Legal Disclaimer
-              </Link>
-              <Link
-                to="/gdpr"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                GDPR
-              </Link>
-              <Link
-                to="/dmca"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                DMCA Policy
-              </Link>
-            </nav>
+          {/* Legal */}
+          <div className="space-y-2">
+            <button
+              onClick={() => setShowLegal(!showLegal)}
+              className="text-lg font-semibold text-white w-full text-left flex justify-between items-center md:block"
+            >
+              Legal
+              {isMobile && <span>{showLegal ? "−" : "+"}</span>}
+            </button>
+            {(showLegal || !isMobile) && (
+              <nav className="flex flex-col space-y-2 text-sm text-gray-400 transition-all duration-300 ease-in-out">
+                <Link to="/privacy-policy" onClick={handleLinkClick} className="hover:text-white">Privacy Policy</Link>
+                <Link to="/terms" onClick={handleLinkClick} className="hover:text-white">Terms & Conditions</Link>
+                <Link to="/cookies" onClick={handleLinkClick} className="hover:text-white">Cookies Policy</Link>
+                <Link to="/disclaimer" onClick={handleLinkClick} className="hover:text-white">Legal Disclaimer</Link>
+                <Link to="/gdpr" onClick={handleLinkClick} className="hover:text-white">GDPR</Link>
+                <Link to="/dmca" onClick={handleLinkClick} className="hover:text-white">DMCA Policy</Link>
+              </nav>
+            )}
           </div>
 
           {/* Social Media */}
@@ -133,8 +114,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Sylphora Technologies Private Limited.
-              All rights reserved.
+              © {new Date().getFullYear()} Sylphora Technologies Private Limited. All rights reserved.
             </p>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
