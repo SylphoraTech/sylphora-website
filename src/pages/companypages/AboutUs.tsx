@@ -7,7 +7,7 @@ const AboutUs = () => {
       <div className="w-full max-w-4xl mx-auto p-16 text-gray-900 dark:text-white">
         {/* Stylish Heading */}
         <div className="relative text-center mb-12">
-          <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
             About Us
           </h1>
           <div className="absolute left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-pink-500 mt-2 rounded-full"></div>

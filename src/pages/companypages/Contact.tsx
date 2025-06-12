@@ -31,9 +31,12 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="max-w-6xl mx-auto"
         >
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <div className="relative text-center mb-12">
+           <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+            Contact Us
+          </h1>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-pink-500 mt-2 rounded-full"></div>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"> <br></br>
               Have questions or want to discuss a project? We're here to help.
               Reach out to us and we'll respond as soon as possible.
             </p>

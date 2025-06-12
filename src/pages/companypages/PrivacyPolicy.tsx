@@ -7,8 +7,10 @@ const PrivacyPolicy = () => {
       <div className="container mx-auto p-6 max-w-4xl">
       <header className="text-center mt-12 mb-12">
 
-        <h1 className="text-2xl md:text-3xl font-bold mb-4">Privacy Policy</h1>
-
+        <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+           Privacy Policy
+          </h1>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-pink-500 mt-2 rounded-full"></div><br></br>
           <p className="text-gray-600 dark:text-gray-400">
             <strong>Last Updated:</strong> March 10, 2025
           </p>
