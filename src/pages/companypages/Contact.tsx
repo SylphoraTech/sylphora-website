@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import PageTransition from "@/components/ui/PageTransition";
+import { supabase } from "@/lib/supabaseClient";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,16 +12,64 @@ const Contact = () => {
     message: ""
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-  };  
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setError("");
+  setSubmitted(false);
+
+  if (!formData.message.trim()) {
+    setError("Message is required.");
+    setIsSubmitting(false);
+    return;
+  }
+
+  const payload = {
+    name: formData.name || null,
+    email: formData.email || null,
+    phone_no: formData.phone ? Number(formData.phone) : null,
+    company_name: formData.company || null,
+    message: formData.message.trim(),
+  };
+
+  console.log("Sending payload to Supabase:", payload);
+
+  const { error, data } = await supabase.from("contact_details").insert([payload]);
+
+  console.log("Supabase response:", { error, data });
+
+  setIsSubmitting(false);
+
+  if (error) {
+    console.error("📌 Supabase Error Details:", error);
+    setError(`Error: ${error.message}`);
+  } else {
+    setSubmitted(true);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      message: ""
+    });
+  }
+};
+
+
+  const inputClass =
+    "w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 " +
+    "bg-white dark:bg-gray-800 text-gray-900 dark:text-white " +
+    "placeholder-gray-400 dark:placeholder-gray-500 " +
+    "focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors";
 
   return (
     <PageTransition>
@@ -32,11 +81,11 @@ const Contact = () => {
           className="max-w-6xl mx-auto"
         >
           <div className="relative text-center mb-12">
-           <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-            Contact Us
-          </h1>
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-pink-500 mt-2 rounded-full"></div>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"> <br></br>
+            <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+              Contact Us
+            </h1>
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-pink-500 mt-2 rounded-full"></div>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"><br />
               Have questions or want to discuss a project? We're here to help.
               Reach out to us and we'll respond as soon as possible.
             </p>
@@ -53,9 +102,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
-                      Your Name
-                    </label>
+                    <label htmlFor="name" className="block text-sm font-medium mb-2">Your Name</label>
                     <input
                       type="text"
                       id="name"
@@ -63,15 +110,11 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 
-                      bg-white dark:bg-gray-800 text-gray-900 dark:text-white
-                      focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className={inputClass}
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email Address
-                    </label>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2">Email Address</label>
                     <input
                       type="email"
                       id="email"
@@ -79,50 +122,38 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 
-                      bg-white dark:bg-gray-800 text-gray-900 dark:text-white
-                      focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className={inputClass}
                     />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                      Phone Number
-                    </label>
+                    <label htmlFor="phone" className="block text-sm font-medium mb-2">Phone Number</label>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 
-                      bg-white dark:bg-gray-800 text-gray-900 dark:text-white
-                      focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className={inputClass}
                     />
                   </div>
                   <div>
-                    <label htmlFor="company" className="block text-sm font-medium mb-2">
-                      Company Name
-                    </label>
+                    <label htmlFor="company" className="block text-sm font-medium mb-2">Company Name</label>
                     <input
                       type="text"
                       id="company"
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 
-                      bg-white dark:bg-gray-800 text-gray-900 dark:text-white
-                      focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className={inputClass}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message
-                  </label>
+                  <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
                   <textarea
                     id="message"
                     name="message"
@@ -130,19 +161,21 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 
-                    bg-white dark:bg-gray-800 text-gray-900 dark:text-white
-                    focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
+                    className={`${inputClass} resize-none`}
                   />
                 </div>
 
+                {error && <p className="text-red-600 text-sm">{error}</p>}
+                {submitted && <p className="text-green-600 text-sm">Message sent successfully!</p>}
+
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg
-                  transform transition-all duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2
-                  focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 
+                  bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+                  focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                 >
-                  Send Message
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </motion.div>
@@ -157,25 +190,11 @@ const Contact = () => {
               <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8">
                 <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
                 <div className="space-y-4">
+                  {/* Address */}
                   <div className="flex items-start space-x-4">
-                    <svg
-                      className="w-6 h-6 text-blue-500 mt-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
+                    <svg className="w-6 h-6 text-blue-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                     <div>
                       <p className="font-medium">Address</p>
@@ -188,51 +207,27 @@ const Contact = () => {
                     </div>
                   </div>
 
+                  {/* Email */}
                   <div className="flex items-start space-x-4">
-                    <svg
-                      className="w-6 h-6 text-blue-500 mt-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
+                    <svg className="w-6 h-6 text-blue-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                     <div>
                       <p className="font-medium">Email</p>
-                      <a
-                        href="mailto:Sylphora.pvt@gmail.com"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
-                      >
+                      <a href="mailto:Sylphora.pvt@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">
                         Sylphora.pvt@gmail.com
                       </a>
                     </div>
                   </div>
 
+                  {/* Phone */}
                   <div className="flex items-start space-x-4">
-                    <svg
-                      className="w-6 h-6 text-blue-500 mt-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
+                    <svg className="w-6 h-6 text-blue-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                     <div>
                       <p className="font-medium">Phone</p>
-                      <a
-                        href="tel:+911234567890"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
-                      >
+                      <a href="tel:+911234567890" className="text-blue-600 dark:text-blue-400 hover:underline">
                         +91 9116421942
                       </a>
                     </div>
