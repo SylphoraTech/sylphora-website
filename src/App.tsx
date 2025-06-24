@@ -60,6 +60,7 @@ function App() {
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/collaboration" element={<Collaboration />} />
+            
 
           </Routes>
         </main>

@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import PageTransition from "../components/ui/PageTransition"; 
 
 const Help = () => {
+  const navigate = useNavigate();
   return (
     <PageTransition>
       <div className="container mx-auto p-8 max-w-4xl">
@@ -36,9 +38,13 @@ const Help = () => {
             </div>
           </div>
 
-          <button className="mt-8 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white py-2 px-6 rounded-full transition-colors">
+            <button
+            onClick={() => navigate("/contact")}
+            className="mt-8 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white py-2 px-6 rounded-full transition-colors"
+          >
             Contact Support
           </button>
+
         </div>
       </div>
     </PageTransition>

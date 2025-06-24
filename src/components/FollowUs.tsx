@@ -16,13 +16,7 @@ const socialLinks: Array<{
   color: string;
   ariaLabel: string;
 }> = [
-  {
-    name: "Facebook",
-    icon: FaFacebookF,
-    url: "https://facebook.com",
-    color: "hover:bg-blue-600",
-    ariaLabel: "Follow us on Facebook",
-  },
+  
   {
     name: "Twitter",
     icon: FaTwitter,

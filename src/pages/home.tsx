@@ -8,6 +8,7 @@ import { MapPinIcon } from "@heroicons/react/20/solid";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { CoreValuesDemo } from "@/components/cards/CoreValuesDemo";
 
+
 const Home: React.FC = () => {
   const words = [{ text: "Our" }, { text: "Core" }, { text: "Values" }];
 

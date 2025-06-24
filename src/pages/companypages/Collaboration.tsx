@@ -4,6 +4,17 @@ import PartnershipBenefits from "./PartnershipBenefits";
 import { motion } from "framer-motion";
 import { SparklesCore } from "@/components/sparkles";
 import PageTransition from "@/components/ui/PageTransition";
+import { supabase } from "@/lib/supabaseClient";
+
+interface FormData {
+  name: string;
+  email: string;
+  company: string;
+  website: string;
+  phone: string;
+  partnershipType: string;
+  message: string;
+}
 
 const BenefitCard = ({ icon, title, description }: { icon: string; title: string; description: string }) => (
   <motion.div
@@ -38,7 +49,7 @@ const StepCard = ({ step, title, description }: { step: string; title: string; d
 );
 
 const Collaboration = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     company: "",
@@ -48,20 +59,45 @@ const Collaboration = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState<{ type: "success" | "error"; message: string } | null>(null);
   const formSectionRef = useRef<HTMLDivElement>(null);
 
   const scrollToForm = () => {
     formSectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Form submitted successfully!");
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setLoading(true);
+  setAlert(null);
+
+  const { error } = await supabase
+    .from("partnership_applications")
+    .insert([
+      {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        website: formData.website,
+        phone: formData.phone,
+        partnership_type: formData.partnershipType, // match your Supabase DB column
+        message: formData.message,
+      },
+    ]);
+
+  if (error) {
+    console.error("Supabase error:", error);
+    setAlert({ type: "error", message: "Submission failed. Please try again." });
+  } else {
+    setAlert({ type: "success", message: "Form submitted successfully!" });
     setFormData({
       name: "",
       email: "",
@@ -71,7 +107,13 @@ const Collaboration = () => {
       partnershipType: "",
       message: "",
     });
-  };
+  }
+
+  setLoading(false);
+};
+
+
+
 
   return (
     <PageTransition>
@@ -112,7 +154,7 @@ const Collaboration = () => {
           </motion.div>
         </div>
 
-        {/* Partnership Types Section */}
+        {/* Partnership Types */}
         <section className="w-full py-20 px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -128,26 +170,14 @@ const Collaboration = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <BenefitCard
-                icon="💻"
-                title="Technology Partners"
-                description="For Software & Hardware Providers: Joint solution development, API integration support, co-marketing opportunities, technical enablement."
-              />
-              <BenefitCard
-                icon="🚀"
-                title="Solution Partners"
-                description="For Consultants & Agencies: Sales and implementation training, competitive commissions, marketing resources, dedicated partner manager."
-              />
-              <BenefitCard
-                icon="🔬"
-                title="Research Partners"
-                description="For Academic & Research Institutions: Joint research initiatives, data sharing, academic licensing programs, industry-academia knowledge exchange."
-              />
+              <BenefitCard icon="💻" title="Technology Partners" description="For Software & Hardware Providers..." />
+              <BenefitCard icon="🚀" title="Solution Partners" description="For Consultants & Agencies..." />
+              <BenefitCard icon="🔬" title="Research Partners" description="For Academic & Research Institutions..." />
             </div>
           </motion.div>
         </section>
 
-        {/* Partnership Journey Section */}
+        {/* Partnership Journey */}
         <section className="w-full py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -163,34 +193,18 @@ const Collaboration = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              <StepCard
-                step="1"
-                title="Apply"
-                description="Submit your application through our partner application form."
-              />
-              <StepCard
-                step="2"
-                title="Evaluate"
-                description="Our team evaluates potential synergies and collaboration opportunities."
-              />
-              <StepCard
-                step="3"
-                title="Onboard"
-                description="Complete the partnership agreement and technical onboarding process."
-              />
-              <StepCard
-                step="4"
-                title="Collaborate"
-                description="Work together to create value and achieve mutual business goals."
-              />
+              <StepCard step="1" title="Apply" description="Submit your application..." />
+              <StepCard step="2" title="Evaluate" description="Our team evaluates..." />
+              <StepCard step="3" title="Onboard" description="Complete onboarding..." />
+              <StepCard step="4" title="Collaborate" description="Work together to create value..." />
             </div>
           </motion.div>
         </section>
 
-        {/* Partnership Benefits Section */}
+        {/* Benefits Section */}
         <PartnershipBenefits />
 
-        {/* Application Form Section */}
+        {/* Form */}
         <section ref={formSectionRef} className="w-full py-20 px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -201,78 +215,50 @@ const Collaboration = () => {
             <div className="text-center space-y-4">
               <h2 className="text-3xl font-bold">Become a Partner</h2>
               <p className="text-gray-300">
-                Ready to explore partnership opportunities? Fill out the form below and our partnership team will get in touch with you.
+                Ready to explore partnership opportunities? Fill out the form below and our team will contact you.
               </p>
             </div>
 
+
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-300">Company Name</label>
-                  <input
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-300">Website</label>
-                  <input
-                    type="text"
-                    name="website"
-                    value={formData.website}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-300">Contact Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-300">Email Address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-300">Phone Number</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                  />
-                </div>
+                {[
+                  { name: "company", label: "Company Name", type: "text", required: true },
+                  { name: "website", label: "Website", type: "text" },
+                  { name: "name", label: "Contact Name", type: "text", required: true },
+                  { name: "email", label: "Email Address", type: "email", required: true },
+                  { name: "phone", label: "Phone Number", type: "tel" },
+                ].map(({ name, label, type, required }) => (
+                  <div key={name} className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-300">{label}</label>
+                    <input
+                      type={type}
+                      name={name}
+                      value={(formData as any)[name]}
+                      onChange={handleInputChange}
+                      required={required}
+                      className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    />
+                  </div>
+                ))}
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-300">Partnership Type</label>
                   <select
                     name="partnershipType"
                     value={formData.partnershipType}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                     required
+                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                   >
                     <option value="">Select Partnership Type</option>
                     <option value="technology">Technology Partner</option>
                     <option value="solution">Solution Partner</option>
                     <option value="research">Research Partner</option>
+                    <option value="agencies">Agencies Partner</option>
+                    <option value="companies">Companies Partner</option>
+                    <option value="universities">Universities & Colleges Partner</option>
+                    <option value="product">Product Owners / Startup Founders</option>
                     <option value="other">Other</option>
                   </select>
                 </div>
@@ -287,17 +273,28 @@ const Collaboration = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
                   required
+                  className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
                 />
               </div>
+
+              {alert && (
+                  <div
+                  className={`text-center p-3 rounded-md ${
+                  alert.type === "success" ? "bg-green-600/20 text-green-400" : "bg-red-600/20 text-red-400"
+                   }`}
+                  >
+              {alert.message}
+                  </div>
+                  )}
 
               <div className="text-center">
                 <Button
                   type="submit"
+                  disabled={loading}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-8 py-3 rounded-lg transform transition-all duration-200 hover:scale-105"
                 >
-                  Submit Application
+                  {loading ? "Submitting..." : "Submit Application"}
                 </Button>
               </div>
             </form>
