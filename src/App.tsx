@@ -15,6 +15,7 @@ import Disclaimer from "./pages/companypages/disclaimer";
 import { applyBrowserFixes } from "./utils/browserUtils";
 import Collaboration from "@/pages/companypages/Collaboration";
 
+
 // App.tsx
 function App() {
   useEffect(() => {
@@ -61,7 +62,7 @@ function App() {
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/collaboration" element={<Collaboration />} />
-            
+           
 
           </Routes>
         </main>
