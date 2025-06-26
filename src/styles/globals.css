@@ -19,6 +19,12 @@ body {
   width: 100%;
 }
 
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 6s linear infinite;
+  }
+}
+
 /* Responsive container */
 .container {
   width: 100%;

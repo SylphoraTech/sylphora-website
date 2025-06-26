@@ -214,8 +214,13 @@ const Contact = () => {
                     </svg>
                     <div>
                       <p className="font-medium">Email</p>
-                      <a href="mailto:Sylphora.pvt@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">
-                        Sylphora.pvt@gmail.com
+                      <a href="mailto:Help@sylphora.com" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        help@sylphoratech.com  
+                        <br></br>
+                      </a>
+                      <a href="mailtoor:Partner@sylphoratech.com" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        partner@sylphoratech.com  
+                        
                       </a>
                     </div>
                   </div>
