@@ -39,13 +39,6 @@ const CardList: React.FC = () => {
     },
   ];
 
-  const [flippedCards, setFlippedCards] = useState<boolean[]>(cards.map(() => false));
-
-  const handleCardClick = (index: number) => {
-    setFlippedCards((prev) =>
-      prev.map((flipped, i) => (i === index ? !flipped : flipped))
-    );
-  };
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

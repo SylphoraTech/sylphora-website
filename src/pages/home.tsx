@@ -6,35 +6,26 @@ import { motion } from "framer-motion";
 import LampContainer from "@/components/ui/Lamp/LampContainer";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { CoreValuesDemo } from "@/components/cards/CoreValuesDemo";
-import { MultiStepLoader as Loader } from "@/components/ui/multi-step-loader"; // Ensure path is correct
+
 
 const loadingStates = [
-  { text: "Humi" },
-  { text: "Project 440" },
-  { text: "AI Control" },
-  { text: " Resume builder" },
-  { text: "Local Model Launcher" },
-
+   { text: "Humi", link: "" },                
+  { text: "Project 440", link: "" },
+  { text: "AI Control", link: "" },
+  { text: "Resume builder", link: "" },
+  { text: "Local Model Launcher", link: "" },
 ];
 
-const stepDuration = 1700; // in milliseconds
+
 
 const Home: React.FC = () => {
   const words = [{ text: "Our" }, { text: "Core" }, { text: "Values" }];
-  const [loading, setLoading] = useState(false);
-  const [showLoader, setShowLoader] = useState(false);
+  const [showOffers, setShowOffers] = useState(false);
 
-  const handleClick = () => {
-    setShowLoader(true);
-    setLoading(true);
+const handleClick = () => {
+  setShowOffers(true); // Show buttons directly on click
+};
 
-    // Calculate total animation time and auto-exit after it completes
-    const totalDuration = loadingStates.length * stepDuration;
-    setTimeout(() => {
-      setLoading(false);
-      setShowLoader(false);
-    }, totalDuration);
-  };
 
   return (
     <div className="flex flex-col mt-20 items-center w-full bg-black text-white">
@@ -54,30 +45,42 @@ const Home: React.FC = () => {
         
         <SparklesPreview />
 
-        {/* Clickable trigger */}
-{!showLoader && (
-  <button
-    onClick={handleClick}
-    className="relative group mt-20 px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold text-lg rounded-full shadow-lg overflow-hidden transition-all duration-300 hover:from-blue-500 hover:to-cyan-400 hover:scale-105 animate-pulse"
+        
+{/* Always show this main button */}
+<button
+  onClick={handleClick}
+  className="relative group mt-20 px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold text-lg rounded-full shadow-lg overflow-hidden transition-all duration-300 hover:from-blue-500 hover:to-cyan-400 hover:scale-105 animate-pulse"
+>
+  <span className="relative z-10">Explore Our Products</span>
+  <span className="absolute inset-0 bg-white opacity-10 group-hover:opacity-20 transition-all duration-300 rounded-full" />
+</button>
 
-  >
-    <span className="relative z-10">Sylphora Offers You</span>
-    <span className="absolute inset-0 bg-white opacity-10 group-hover:opacity-20 transition-all duration-300 rounded-full" />
-  </button>
-    )}
+{/* Show offer buttons after click */}
+{showOffers && (
+  <div className="mt-10 flex flex-row flex-wrap gap-4 justify-center">
+    {loadingStates.map((item, index) => (
+      <button
+        key={index}
+        type="button"
+         onClick={() => {
+          if (item.link) {
+            window.open(item.link, "_blank");
+          } else {
+            console.log(`${item.text} clicked`);
+          }
+        }}
+        className="px-6 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition"
+      >
+        {item.text}
+      </button>
+    ))}
+  </div>
+)}
 
 
-        {/* Multi-step loader shows on click */}
-        {showLoader && (
-          <div className="mt-6">
-            <Loader
-              loadingStates={loadingStates}
-              loading={loading}
-              duration={2000}
-            />
-          </div>
-        )}
-      </div>
+
+
+      </div> {/* <-- This closes the header section div */}
 
       {/* Typewriter and Core Values Section */}
       <div className="w-full flex flex-col items-center mt-20 justify-center px-4 text-center">
@@ -101,8 +104,14 @@ const Home: React.FC = () => {
           </div>
            
         </section>
+
+        
       </LampContainer>
+
+      
+
     </div>
+    
   );
 };
 

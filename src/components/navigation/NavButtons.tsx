@@ -1,32 +1,45 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { NavLink } from "react-router-dom";
+import { Home, Info, Users, Mail } from "lucide-react";
 
 interface NavButtonsProps {
   isMobile?: boolean;
 }
 
-export function NavButtons({ isMobile = false }: NavButtonsProps) {
-  const mainNavItems = [
-    { name: "Home", path: "/" },
-    { name: "About Us", path: "/about-us" },
-    { name: "Collaboration", path: "/collaboration" },
-    { name: "Contact", path: "/contact" },
-  ];
+const mainNavItems = [
+  { name: "Home", path: "/", icon: Home },
+  { name: "About Us", path: "/about-us", icon: Info },
+  { name: "Collaboration", path: "/collaboration", icon: Users },
+  { name: "Contact", path: "/contact", icon: Mail },
+];
 
-  const baseStyles = isMobile
-    ? "block w-full px-3 py-2 text-base font-medium rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-    : "px-3 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors";
+export function NavButtons({ isMobile = false }: NavButtonsProps) {
+  const containerClasses = isMobile
+    ? "flex flex-col space-y-1"
+    : "flex items-center space-x-4";
+
+  const linkClasses = isMobile
+    ? "block w-full px-3 py-2 text-base font-medium rounded-md"
+    : "px-3 py-2 text-sm font-medium rounded-md";
+
+  const commonStyles =
+    "text-gray-700 dark:text-gray-200 hover:bg-black-100 dark:hover:bg-black-800 focus:outline-none focus:ring-2 focus:ring-primary/40 hover:scale-105 transform transition-all duration-200";
 
   return (
-    <nav className={`${isMobile ? 'flex flex-col space-y-1' : 'flex items-center space-x-4'}`}>
-      {mainNavItems.map((item) => (
-        <Link
-          key={item.name}
-          to={item.path}
-          className={`${baseStyles} hover:scale-105 transform transition-all duration-200`}
+    <nav className={containerClasses} role="navigation" aria-label="Main navigation">
+      {mainNavItems.map(({ name, path, icon: Icon }) => (
+        <NavLink
+          key={name}
+          to={path}
+          className={({ isActive }) =>
+            `${linkClasses} ${commonStyles} ${isActive ? "bg-black-200 dark:bg-blacl-700" : ""}`
+          }
+          // aria-current will be set automatically by NavLink when active
         >
-          {item.name}
-        </Link>
+          <div className="flex items-center gap-2">
+            <Icon size={16} />
+            {name}
+          </div>
+        </NavLink>
       ))}
     </nav>
   );

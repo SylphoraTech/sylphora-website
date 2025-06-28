@@ -220,6 +220,10 @@ const Contact = () => {
                       </a>
                       <a href="mailtoor:Partner@sylphoratech.com" className="text-blue-600 dark:text-blue-400 hover:underline">
                         partner@sylphoratech.com  
+                        <br></br>
+                      </a>
+                      <a href="mailtoor:Sylphora.pvt@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        sylphora.pvt@gmail.com  
                         
                       </a>
                     </div>

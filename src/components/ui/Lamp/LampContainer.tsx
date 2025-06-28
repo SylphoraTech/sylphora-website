@@ -1,64 +1,41 @@
+// File: components/ui/Lamp/LampContainer.tsx
 "use client";
-import React, { useEffect, useState } from "react";
-import { getBrowser } from "@/utils/browserUtils";
 
-const LampContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [browser, setBrowser] = useState<string | null>(null);
+import React from "react";
+import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
 
-  useEffect(() => {
-    setIsMounted(true);
-    setBrowser(getBrowser());
+type LampContainerProps = {
+  children: React.ReactNode;
+  className?: string;
+  lampColor?: string;
+};
 
-    return () => setIsMounted(false);
-  }, []);
-
-  // Special styling for browsers
-  const getGradientStyle = () => {
-    // Base styles
-    const baseStyle: React.CSSProperties = {
-      transform: "translateX(-50%)",
-      opacity: 0.3,
-    };
-
-    // Cross-browser gradient implementations
-    if (browser === "edge" || browser === "ie") {
-      return {
-        ...baseStyle,
-        background: "radial-gradient(circle, #D1D5DB 0%, transparent 70%)",
-        filter: "blur(40px)",
-      };
-    } else if (browser === "safari") {
-      return {
-        ...baseStyle,
-        background: "-webkit-radial-gradient(circle, #D1D5DB 0%, transparent 70%)",
-        WebkitFilter: "blur(40px)",
-      };
-    } else if (browser === "firefox") {
-      return {
-        ...baseStyle,
-        background: "-moz-radial-gradient(circle, #D1D5DB 0%, transparent 70%)",
-        filter: "blur(40px)",
-      };
-    } else {
-      // Chrome and others
-      return {
-        ...baseStyle,
-        background: "radial-gradient(circle, #D1D5DB 0%, transparent 70%)",
-        filter: "blur(40px)",
-      };
-    }
-  };
-
+const LampContainer = ({
+  children,
+  className,
+  lampColor = "#22d3ee",
+}: LampContainerProps) => {
   return (
-    <div className="relative w-full overflow-hidden bg-black text-white py-20">
-      {/* Lamp Effect Background with cross-browser compatible gradients */}
-      <div
-        className="absolute top-0 left-1/2 w-96 h-96 rounded-full pointer-events-none hardware-accelerated"
-        style={getGradientStyle()}
-      />
+    <div
+      className={cn(
+        "relative flex flex-col items-center justify-center overflow-hidden bg-slate-950 w-full rounded-xl p-6",
+        className
+      )}
+    >
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0.4, scale: 0.8 }}
+          whileInView={{ opacity: 0.8, scale: 1 }}
+          whileHover={{ opacity: 1, scale: 1.1 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="absolute inset-0 rounded-full blur-3xl"
+          style={{
+            background: `radial-gradient(circle at center, ${lampColor}, transparent 70%)`,
+          }}
+        />
+      </div>
 
-      {/* Content */}
       <div className="relative z-10">{children}</div>
     </div>
   );

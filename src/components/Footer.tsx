@@ -30,7 +30,7 @@ export function Footer() {
           <div className="space-y-2">
             <button
               onClick={() => setShowCompany(!showCompany)}
-              className="text-lg font-semibold text-white w-full text-left flex justify-between items-center md:block"
+              className="text-lg font-semibold text-white text-left flex justify-between items-center md:block"
             >
               Company
               {isMobile && <span>{showCompany ? "−" : "+"}</span>}
@@ -66,18 +66,18 @@ export function Footer() {
           <div className="space-y-2">
             <button
               onClick={() => setShowNavigation(!showNavigation)}
-              className="text-lg font-semibold text-white w-full text-left flex justify-between items-center md:block"
+              className="text-lg font-semibold text-white text-left flex justify-between items-center md:block"
             >
               Navigation
               {isMobile && <span>{showNavigation ? "−" : "+"}</span>}
             </button>
             {(showNavigation || !isMobile) && (
               <nav className="flex flex-col space-y-2 text-sm text-gray-400 transition-all duration-300 ease-in-out">
-                <Link to="/" onClick={handleLinkClick} className="hover:text-white">Home</Link>
-                <Link to="/about-us" onClick={handleLinkClick} className="hover:text-white">About Us</Link>
-                <Link to="/collaboration" onClick={handleLinkClick} className="hover:text-white">Collaboration</Link>
-                <Link to="/contact" onClick={handleLinkClick} className="hover:text-white">Contact</Link>
-                <Link to="/help" onClick={handleLinkClick} className="hover:text-white">Help Center</Link>
+                <Link to="/" onClick={handleLinkClick} className="hover:text-white text-left inline-block focus:outline-none focus:ring-0 focus-visible:ring-0 p-0 m-0">Home</Link>
+                <Link to="/about-us" onClick={handleLinkClick} className="hover:text-white text-left inline-block focus:outline-none focus:ring-0 focus-visible:ring-0 p-0 m-0">About Us</Link>
+                <Link to="/collaboration" onClick={handleLinkClick} className="hover:text-white text-left inline-block focus:outline-none focus:ring-0 focus-visible:ring-0 p-0 m-0">Collaboration</Link>
+                <Link to="/contact" onClick={handleLinkClick} className="hover:text-white text-left inline-block focus:outline-none focus:ring-0 focus-visible:ring-0 p-0 m-0">Contact</Link>
+                <Link to="/help" onClick={handleLinkClick} className="hover:text-white text-left inline-block focus:outline-none focus:ring-0 focus-visible:ring-0 p-0 m-0">Help Center</Link>
               </nav>
             )}
           </div>
@@ -86,19 +86,19 @@ export function Footer() {
           <div className="space-y-2">
             <button
               onClick={() => setShowLegal(!showLegal)}
-              className="text-lg font-semibold text-white w-full text-left flex justify-between items-center md:block"
+              className="text-lg font-semibold text-white text-left flex justify-between items-center md:block"
             >
               Legal
               {isMobile && <span>{showLegal ? "−" : "+"}</span>}
             </button>
             {(showLegal || !isMobile) && (
               <nav className="flex flex-col space-y-2 text-sm text-gray-400 transition-all duration-300 ease-in-out">
-                <Link to="/privacy-policy" onClick={handleLinkClick} className="hover:text-white">Privacy Policy</Link>
-                <Link to="/terms" onClick={handleLinkClick} className="hover:text-white">Terms & Conditions</Link>
-                <Link to="/cookies" onClick={handleLinkClick} className="hover:text-white">Cookies Policy</Link>
-                <Link to="/disclaimer" onClick={handleLinkClick} className="hover:text-white">Legal Disclaimer</Link>
-                <Link to="/gdpr" onClick={handleLinkClick} className="hover:text-white">GDPR</Link>
-                <Link to="/dmca" onClick={handleLinkClick} className="hover:text-white">DMCA Policy</Link>
+                <Link to="/privacy-policy" onClick={handleLinkClick} className="hover:text-white text-left inline-block focus:outline-none focus:ring-0 focus-visible:ring-0 p-0 m-0">Privacy Policy</Link>
+                <Link to="/terms" onClick={handleLinkClick} className="hover:text-white text-left inline-block focus:outline-none focus:ring-0 focus-visible:ring-0 p-0 m-0">Terms & Conditions</Link>
+                <Link to="/cookies" onClick={handleLinkClick} className="hover:text-white text-left inline-block focus:outline-none focus:ring-0 focus-visible:ring-0 p-0 m-0">Cookies Policy</Link>
+                <Link to="/disclaimer" onClick={handleLinkClick} className="hover:text-white text-left inline-block focus:outline-none focus:ring-0 focus-visible:ring-0 p-0 m-0">Legal Disclaimer</Link>
+                <Link to="/gdpr" onClick={handleLinkClick} className="hover:text-white text-left inline-block focus:outline-none focus:ring-0 focus-visible:ring-0 p-0 m-0">GDPR</Link>
+                <Link to="/dmca" onClick={handleLinkClick} className="hover:text-white text-left inline-block focus:outline-none focus:ring-0 focus-visible:ring-0 p-0 m-0">DMCA Policy</Link>
               </nav>
             )}
           </div>
