@@ -42,7 +42,7 @@ const socialLinks: Array<{
 
 export default function FollowUs() {
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap gap-3 sm:gap-4">
       {socialLinks.map((social) => {
         const IconComponent = social.icon as React.ComponentType<IconBaseProps>;
         return (
@@ -53,7 +53,7 @@ export default function FollowUs() {
             rel="noopener noreferrer"
             aria-label={social.ariaLabel}
             className={`
-              w-10 h-10 flex items-center justify-center rounded-lg
+              w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg
               bg-gray-800 text-gray-400
               ${social.color} hover:text-white
               transform transition-all duration-200
@@ -61,7 +61,7 @@ export default function FollowUs() {
               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-gray-400
             `}
           >
-            <IconComponent className="w-5 h-5" />
+            <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
           </a>
         );
       })}

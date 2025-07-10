@@ -42,11 +42,11 @@ const CardList: React.FC = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
       {cards.map((card, index) => (
         <GlareCard
           key={index}
-          className="rounded-xl border border-white/10 bg-black"
+          className="rounded-xl border border-white/10 bg-black overflow-hidden"
         >
           <CardItem title={card.title} description={card.description} />
         </GlareCard>

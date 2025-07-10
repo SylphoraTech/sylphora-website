@@ -59,14 +59,14 @@ export function CoreValuesDemo() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto px-2 sm:px-4"
       >
         {coreValues.map((value) => (
           <motion.div
             key={value.title}
             variants={item}
             className={cn(
-              "relative overflow-hidden rounded-2xl p-8 h-full group",
+              "relative overflow-hidden rounded-2xl p-4 sm:p-6 md:p-8 h-full group",
               "bg-gradient-to-br from-gray-900 to-black border border-gray-800",
               "transition-all duration-300 shadow-md hover:shadow-glow"
             )}
@@ -76,13 +76,13 @@ export function CoreValuesDemo() {
 
             {/* Content */}
             <div className="relative z-10">
-              <span className="text-3xl mb-6 block transform group-hover:scale-110 transition-transform duration-300">
+              <span className="text-2xl sm:text-3xl mb-4 sm:mb-6 block transform group-hover:scale-110 transition-transform duration-300">
                 {value.icon}
               </span>
-              <h3 className="text-xl font-bold mb-4 text-white tracking-tight">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4 text-white tracking-tight">
                 {value.title}
               </h3>
-              <p className="text-gray-300 group-hover:text-white transition-colors duration-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-300 group-hover:text-white transition-colors duration-300 leading-relaxed">
                 {value.description}
               </p>
             </div>
